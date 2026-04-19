@@ -9,6 +9,9 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 class Crawl_wokers():
     def __init__(self):
@@ -16,12 +19,25 @@ class Crawl_wokers():
         self.driver = None
 
         self.options = Options()
-        self.options.add_argument("--headless=new")  # bỏ nếu muốn debug
+        # self.options.add_argument("--headless=new")  # bỏ nếu muốn debug
+        # self.options.add_argument("--disable-gpu")
+        # self.options.add_argument("--window-size=1920,1080")
+        # self.options.add_argument("--lang=vi-VN")
+
+        # self.driver = webdriver.Chrome(options=self.options)
+
+        # ⚠️ bắt buộc cho cloud
+        self.options.add_argument("--headless=new")
+        self.options.add_argument("--no-sandbox")
+        self.options.add_argument("--disable-dev-shm-usage")
         self.options.add_argument("--disable-gpu")
         self.options.add_argument("--window-size=1920,1080")
-        self.options.add_argument("--lang=vi-VN")
 
-        self.driver = webdriver.Chrome(options=self.options)
+        # 👇 dùng webdriver-manager
+        self.driver = webdriver.Chrome(
+            service=Service(ChromeDriverManager().install()),
+            options=self.options
+        )
 
         pass
 

@@ -13,7 +13,7 @@ st.title("🚀 Facebook Post Crawler")
 uploaded_file = st.file_uploader("📂 Upload CSV/Excel", type=["csv", "xlsx"])
 
 # Input hashtag
-hashtag = st.text_input("🔖 Nhập hashtag", "#FITUTE")
+hashtag = st.text_input("🔖 Nhập hashtag", "")
 
 # Button
 start = st.button("🔥 Bắt đầu crawl")
